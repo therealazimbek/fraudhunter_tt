@@ -9,4 +9,3 @@ class Employee(models.Model):
     joined_date = models.DateTimeField(auto_now_add=True)
     salary = models.PositiveIntegerField(blank=False)
     supervisor = models.ForeignKey('self', on_delete=models.CASCADE)
-
