@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+    <div class="container my-4">
+
+        <h1 class="font-weight-bold">Employee Database</h1>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+        <form role="search">
+            <input type="search"  placeholder="Search..."
+                   aria-label="Search">
+        </form>
+
+        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="th-sm">First Name</th>
+                <th class="th-sm">Middle Name</th>
+                <th class="th-sm">Last Name</th>
+                <th class="th-sm">Position</th>
+                <th class="th-sm">Start date</th>
+                <th class="th-sm">Salary</th>
+                <th class="th-sm">Supervisor</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in page_obj %}
+                <tr>
+                    <td>{{ employee.firstname }}</td>
+                    <td>{{ employee.middlename }}</td>
+                    <td>{{ employee.lastname }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>{{ employee.joined_date }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{ employee.supervisor }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th class="th-sm">First Name</th>
+                <th class="th-sm">Middle Name</th>
+                <th class="th-sm">Last Name</th>
+                <th class="th-sm">Position</th>
+                <th class="th-sm">Start date</th>
+                <th class="th-sm">Salary</th>
+                <th class="th-sm">Supervisor</th>
+            </tr>
+            </tfoot>
+        </table>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+{% endblock %}
+
